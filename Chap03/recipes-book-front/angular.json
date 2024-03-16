@@ -8,11 +8,11 @@
       "schematics": {
         "@schematics/angular:component": {
           "standalone": true
-        }, 
+        },
         "@schematics/angular:directive": {
           "standalone": true
-        } , 
-        "@schematics/angular:pipe":{
+        },
+        "@schematics/angular:pipe": {
           "standalone": true
         }
       },
@@ -41,7 +41,6 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeflex/primeflex.css",
               "node_modules/primeicons/primeicons.css"
-
             ],
             "scripts": []
           },
@@ -114,8 +113,22 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
