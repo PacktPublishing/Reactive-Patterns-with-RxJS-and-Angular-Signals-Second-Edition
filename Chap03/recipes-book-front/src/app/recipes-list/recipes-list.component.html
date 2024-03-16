@@ -1,10 +1,10 @@
 <div *ngIf="recipes$ | async as recipes" class="card">
     <div>{{recipes.length}} Results</div>
     <p-dataView #dv [value]="recipes" [paginator]="true" [rows]="9" filterBy="name" layout="grid">
-        <ng-template let-recipe pTemplate="gridItem">
-            <div class="p-col-12 p-md-3">
-                <div class="recipe-grid-item card">
-                    <div class="recipe-grid-item-top">
+        <ng-template let-recipes pTemplate="gridItem">
+            <div class="grid grid-nogutter">
+                <div class="col-12" class="recipe-grid-item card"  *ngFor="let recipe of recipes">
+                    <div class="recipe-grid-item-top" >
                         <div>
                             <i class="pi pi-tag recipe-category-icon"></i>
                             <span class="recipe-category">{{recipe.category}}</span>

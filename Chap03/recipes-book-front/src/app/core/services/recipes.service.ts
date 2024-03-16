@@ -11,7 +11,6 @@ const BASE_PATH = environment.basePath
 
 export class RecipesService {
 
-  recipes$ = this.http.get<Recipe[]>(`/api/recipes`);
-
+  recipes$ = this.http.get<Recipe[]>(`${BASE_PATH}/recipes`);
   constructor(private http: HttpClient) { }
 }
