@@ -38,7 +38,7 @@ export class RecipesListComponent {
   recipes: Recipe[] = [];
   /* The readonly stream */
   filterRecipesAction$ = this.service.filterRecipesAction$;
-  filtredRecipes$ = combineLatest([this.recipes$, this.filterRecipesAction$]).pipe(
+  filteredRecipes$ = combineLatest([this.recipes$, this.filterRecipesAction$]).pipe(
     map(([recipes, filter]: [Recipe[], Recipe]) => {
       const filterTitle = filter?.title?.toLowerCase() ?? '';
       return recipes.filter(recipe => recipe.title?.toLowerCase()
@@ -46,11 +46,10 @@ export class RecipesListComponent {
     })
   );
 
-  recipesByTag$ = this.service.selectedTags$.pipe(mergeMap(tagName => this.service.getRecipesByTag(tagName))).pipe(
-    map(result => this.recipes = [...this.recipes, ...result]));
+  // recipesByTag$ = this.service.selectedTags$.pipe(mergeMap(tagName => this.service.getRecipesByTag(tagName))).pipe(
+  //   map(result => this.recipes = [...this.recipes, ...result]));
 
   constructor(private service: RecipesService) {
-    this.service.getRecipesReviews(0).subscribe();
   }
 
 }

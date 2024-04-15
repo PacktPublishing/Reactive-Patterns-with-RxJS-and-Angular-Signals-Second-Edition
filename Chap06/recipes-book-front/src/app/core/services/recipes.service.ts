@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, Subject, from, mergeMap, of } from 'rxjs';
 const BASE_PATH = environment.basePath;
 import { Tag } from '../model/tags';
-import { Review } from '../model/review.model';
+// import { Review } from '../model/review.model';
 
 
 @Injectable({
@@ -45,10 +45,10 @@ export class RecipesService {
   }
 
 
-  getRecipesReviews(recipeId: number): Observable<Review[]> {
-    return from([`${BASE_PATH}/source1/reviews`, `${BASE_PATH}/source2/reviews`])
-      .pipe(
-        mergeMap((endpoint) => this.http.get<Review[]>(endpoint, { params: { recipeId: recipeId } })));
-  }
+  // getRecipesReviews(recipeId: number): Observable<Review[]> {
+  //   return from([`${BASE_PATH}/source1/reviews`, `${BASE_PATH}/source2/reviews`])
+  //     .pipe(
+  //       mergeMap((endpoint) => this.http.get<Review[]>(endpoint, { params: { recipeId: recipeId } })));
+  // }
 
 }

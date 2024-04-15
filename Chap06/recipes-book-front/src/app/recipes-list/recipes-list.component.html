@@ -1,8 +1,8 @@
- @if (recipesByTag$ | async; as recipes) {
+ @if (filteredRecipes$ | async; as recipes) {
 <div class="card">
     <div class="row">
         <div class="col-6">{{recipes.length}} Results</div>
-        <app-tags-list class="col-6"></app-tags-list>
+        <!-- <app-tags-list class="col-6"></app-tags-list> -->
     </div>
     
     <p-dataView #dv [value]="recipes" [paginator]="true" [rows]="9" filterBy="name" layout="grid">
