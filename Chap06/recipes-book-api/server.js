@@ -39,17 +39,17 @@ server.get('/api/recipesByTags/', (req, res) => {
 }, 4000);
 });
 
-server.get('/api/recipes', (req, res) => {
-  res.status(200).json(recipes)
-  const { page, limit } = req.query;
-  const pageNum = parseInt(page) || 1;
-  const pageSize = parseInt(limit) || 10;
-  const startIndex = (pageNum - 1) * pageSize;
-  const endIndex = pageNum * pageSize;
-  const paginatedRecipes = recipes.slice(startIndex, endIndex);
-  res.status(200).json(paginatedRecipes);
+// server.get('/api/recipes', (req, res) => {
+//   res.status(200).json(recipes)
+//   const { page, limit } = req.query;
+//   const pageNum = parseInt(page) || 1;
+//   const pageSize = parseInt(limit) || 10;
+//   const startIndex = (pageNum - 1) * pageSize;
+//   const endIndex = pageNum * pageSize;
+//   const paginatedRecipes = recipes.slice(startIndex, endIndex);
+//   res.status(200).json(paginatedRecipes);
 
-})
+// })
 
 server.post('/api/recipes', (req, res) => {
   setTimeout(() => {

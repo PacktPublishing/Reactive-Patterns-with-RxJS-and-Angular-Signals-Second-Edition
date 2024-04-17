@@ -25,20 +25,6 @@ export class RecipesService {
   private selectedTags = new BehaviorSubject<string>('');
   selectedTags$ = this.selectedTags.asObservable();
 
-  // page Number update
-  // pageNumberChange = new BehaviorSubject<number>(1);
-  // pageNumber$ = this.pageNumberChange.asObservable();
-  // recipes$=this.pageNumber$.pipe( 
-  //   concatMap((pageNumber) => 
-  //     this.http.get<Recipe[]>(`${BASE_PATH}/recipes`, { 
-  //       params: { 
-  //         page: pageNumber, 
-  //         limit: 10, 
-  //       }, 
-  //     }) 
-  //   )); 
-
-
   constructor(private http: HttpClient) { }
 
   updateFilter(criteria: Recipe) {
