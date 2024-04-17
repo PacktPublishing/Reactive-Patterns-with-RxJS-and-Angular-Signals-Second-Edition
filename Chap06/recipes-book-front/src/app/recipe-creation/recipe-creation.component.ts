@@ -38,7 +38,7 @@ export class RecipeCreationComponent {
     catchError(errors => of(errors)),
     tap(result => this.saveSuccess(result))
   );
-  saveSuccess(result: Recipe) {
+  saveSuccess(_result: Recipe) {
     console.log('Saved successfully');
   }
 
@@ -46,7 +46,7 @@ export class RecipeCreationComponent {
   tagValues$ = this.searchTerms.pipe(
     //debounceTime(300), // wait 300ms after each keystroke
     distinctUntilChanged(), // ignore if next search term is same as previous
-    switchMap((term: string) => this.service.searchTags(term)) // switch to new observable each time
+    switchMap((term: string) => this.service.getTags$(term)) // switch to new observable each time
   );
 
   updateSearchTerm(searchTerm: string) {
