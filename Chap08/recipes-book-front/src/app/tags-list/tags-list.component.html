@@ -1,6 +1,0 @@
-<div>
-    @for (tag of tags; track tag) {
-    <p-button class="tag-button" (click)="updateValue(tag.name)" label={{tag.name}}
-        [ngClass]="{ 'clicked': clickStatus(tag.name) }"></p-button>
-    }
-</div>
