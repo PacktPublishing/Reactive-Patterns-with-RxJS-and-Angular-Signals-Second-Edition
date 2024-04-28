@@ -19,6 +19,9 @@ export class RecipesService {
   filterRecipesAction$ = this.filterRecipeSubject.asObservable();
   private selectedTags = new BehaviorSubject<string>('');
   selectedTags$ = this.selectedTags.asObservable();
+  getTags$: (term: string) => Observable<Tag[]> = (term: string) => {
+    return this.http.get<Tag[]>(`${BASE_PATH}/tags`, { params: { criteria: term } });
+  };
 
   constructor(private http: HttpClient) { }
 
