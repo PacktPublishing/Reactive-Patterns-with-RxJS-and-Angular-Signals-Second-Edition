@@ -16,7 +16,13 @@
                         </div>
                     </div>
                     <div class="recipe-grid-item-content">
+                        <!-- Uncomment to test defer rendering -->
+                        <!-- @defer (on hover) { -->
                         <img class="recipe-image" [src]="'assets/recipes/'+ recipe.imageUrl" [alt]="recipe.title" />
+                        <!-- }
+                        @placeholder {
+                        <div>Hover to load the image</div>
+                        } -->
                         <div class="recipe-name">{{recipe?.title}}</div>
                         <div class="recipe-description">{{recipe?.title}}</div>
                         <p-rating class="recipe-rating" [ngModel]="recipe.rating" [readonly]="true" [cancel]="false">
