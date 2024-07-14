@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { Recipe } from '../model/recipe.model';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 const BASE_PATH = environment.basePath
@@ -11,20 +11,20 @@ const BASE_PATH = environment.basePath
 })
 export class SharedDataService {
 
-  selectedRecipe = signal({} as Recipe); 
-  selectedRecipeId = signal<number | undefined>(undefined); 
-  recipe$ = toObservable(this.selectedRecipeId).pipe(switchMap(id => 
-    this.http.get<Recipe>(`${BASE_PATH}/recipes/${id}`) 
-  )); 
+  selectedRecipe = signal({} as Recipe);
+  selectedRecipeId = signal<number | undefined>(undefined);
+  recipe$ = toObservable(this.selectedRecipeId).pipe(filter(Boolean), switchMap(id =>
+    this.http.get<Recipe>(`${BASE_PATH}/recipes/${id}`)
+  ));
 
   // updateSelectedRecipe(recipe: Recipe) {
   //   this.selectedRecipe.set(recipe); 
   // }
 
-  updateSelectedRecipe(recipeId: number | undefined) { 
-    this.selectedRecipeId.set(recipeId); 
-  } 
-  
+  updateSelectedRecipe(recipeId: number | undefined) {
+    this.selectedRecipeId.set(recipeId);
+  }
+
   constructor(private http: HttpClient) {
 
   }

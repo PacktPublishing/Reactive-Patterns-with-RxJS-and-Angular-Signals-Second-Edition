@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipesService } from '../core/services/recipes.service';
 import { DataViewModule } from 'primeng/dataview';
@@ -10,7 +10,6 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
-import { combineLatest,map } from 'rxjs';
 import { Recipe } from '../core/model/recipe.model';
 import { TagsListComponent } from '../tags-list/tags-list.component';
 import { SharedDataService } from '../core/services/shared-data.service';
@@ -45,12 +44,12 @@ export class RecipesListComponent {
     return this.recipes().filter(recipe => recipe.title?.toLowerCase()
       .includes(filterTitle));
   })
-  constructor(private service: RecipesService, private sharedService: SharedDataService, private router: Router) {
+  constructor(private service: RecipesService,
+    private sharedService: SharedDataService, private router: Router) {
   }
 
   editRecipe(recipe: Recipe) {
-    this.sharedService.updateSelectedRecipe(recipe.id); 
-    this.router.navigate(['/recipes/details']); 
-    
- } 
+    this.sharedService.updateSelectedRecipe(recipe.id);
+    this.router.navigate(['/recipes/details']);
+  }
 }

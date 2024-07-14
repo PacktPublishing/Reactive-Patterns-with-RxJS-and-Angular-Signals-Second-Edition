@@ -1,9 +1,8 @@
- @if (filteredRecipes(); as recipes) {
+@if (filteredRecipes(); as recipes) {
 <div class="card">
     <div class="row">
         <div class="col-6">{{recipes.length}} Results</div>
     </div>
-    
     <p-dataView #dv [value]="recipes" [paginator]="true" [rows]="9" filterBy="name" layout="grid">
         <ng-template let-recipes pTemplate="gridItem">
             <div class="grid grid-nogutter">
@@ -15,6 +14,7 @@
                             <span class="recipe-category">{{recipe.category}}</span>
                         </div>
                     </div>
+                    
                     <div class="recipe-grid-item-content">
                         <img class="recipe-image" [src]="'assets/recipes/'+ recipe.imageUrl" [alt]="recipe.title" />
                         <div class="recipe-name">{{recipe?.title}}</div>
@@ -27,6 +27,7 @@
                         <p-button class="recipe-favourite" icon="pi pi-heart"></p-button>
                     </div>
                 </div>
+
                 } @empty {
                 <div>There are no recipes</div>
                 }

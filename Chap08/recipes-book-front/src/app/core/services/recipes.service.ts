@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Recipe } from '../model/recipe.model';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable} from 'rxjs';
 const BASE_PATH = environment.basePath;
 import { Tag } from '../model/tags';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -13,19 +13,18 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 export class RecipesService {
 
-
   recipes$ = this.http.get<Recipe[]>(`${BASE_PATH}/recipes`);
-  recipes = toSignal(this.http.get<Recipe[]>(`${BASE_PATH}/recipes`), { initialValue: [] as Recipe[] });
+  recipes = toSignal(this.recipes$, { initialValue: [] as Recipe[], rejectErrors:true });
   filterRecipe = signal({ title: '' } as Recipe);
 
   private selectedTags = new BehaviorSubject<string>('');
   selectedTags$ = this.selectedTags.asObservable();
 
+
   constructor(private http: HttpClient) { }
 
   updateFilter(criteria: Recipe) {
     this.filterRecipe.set(criteria);
-
   }
 
   updateSelectedTag(tag: string) {
