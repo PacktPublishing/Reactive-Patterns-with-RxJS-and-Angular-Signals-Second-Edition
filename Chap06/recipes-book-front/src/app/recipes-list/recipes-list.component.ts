@@ -44,9 +44,6 @@ export class RecipesListComponent {
     })
   );
 
-  // recipesByTag$ = this.service.selectedTags$.pipe(mergeMap(tagName => this.service.getRecipesByTag(tagName))).pipe(
-  //   map(result => this.recipes = [...this.recipes, ...result]));
-
   constructor(private service: RecipesService) {
   }
 
