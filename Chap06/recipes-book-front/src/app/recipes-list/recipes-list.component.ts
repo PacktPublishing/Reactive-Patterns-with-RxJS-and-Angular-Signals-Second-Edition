@@ -10,9 +10,8 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
-import { combineLatest, concatAll, from, map, mergeMap } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { Recipe } from '../core/model/recipe.model';
-import { TagsListComponent } from '../tags-list/tags-list.component';
 
 @Component({
   selector: 'app-recipes-list',
@@ -25,8 +24,7 @@ import { TagsListComponent } from '../tags-list/tags-list.component';
     InputTextModule,
     ButtonModule,
     RippleModule,
-    RatingModule, FormsModule,
-    TagsListComponent
+    RatingModule, FormsModule
   ],
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss'],

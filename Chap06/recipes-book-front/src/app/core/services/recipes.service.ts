@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe } from '../model/recipe.model';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable, concatMap } from 'rxjs';
+import { BehaviorSubject, Observable, from, mergeAll, mergeMap, toArray } from 'rxjs';
 const BASE_PATH = environment.basePath;
 import { Tag } from '../model/tags';
 
@@ -19,11 +19,16 @@ export class RecipesService {
   filterRecipesAction$ = this.filterRecipeSubject.asObservable();
 
   getTags$: (term: string) => Observable<Tag[]> = (term: string) => {
-    return this.http.get<Tag[]>(`${BASE_PATH}/tags`, {  params: { criteria: term }  });
+    return this.http.get<Tag[]>(`${BASE_PATH}/tags`, { params: { criteria: term } });
   };
 
-  private selectedTags = new BehaviorSubject<string>('');
-  selectedTags$ = this.selectedTags.asObservable();
+  selectedTags$ = from(['Salty', 'Sweet', 'Healthy'])
+  recipesByTag$ = this.selectedTags$.pipe(
+    mergeMap(tag => this.getRecipesByTag(tag)), mergeAll(), toArray());
+    
+  getRecipesByTag(name: string): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${BASE_PATH}/recipesByTags`, { params: { tagName: name } });
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -31,17 +36,11 @@ export class RecipesService {
     this.filterRecipeSubject.next(criteria);
   }
 
-  updateSelectedTag(tag: string) {
-    this.selectedTags.next(tag);
-  }
-
   saveRecipe(formValue: Recipe): Observable<Recipe> {
     return this.http.post<Recipe>(`${BASE_PATH}/recipes`, formValue);
   }
 
-  getRecipesByTag(name: string): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${BASE_PATH}/recipesByTags/`, { params: { tagName: name } });
-  }
- 
+
+
 
 }
