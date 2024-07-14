@@ -1,15 +1,2 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
-@for (currency of currencies(); track currency.id) {
-<option>{{currency.name}}</option>
-} @empty {
-<div>There are no recipes</div>
-}
-
-<div>{{favouriteRecipe().title}}</div>
-<!-- <ul> 
- <li *ngFor="let currency of currencies(); trackBy: trackCurrency">{{ currency.name }}</li>
-</ul>  -->
-@for (currency of currencies(); track trackCurrency($index, currency)) {
-{{ currency.name }}
-}
