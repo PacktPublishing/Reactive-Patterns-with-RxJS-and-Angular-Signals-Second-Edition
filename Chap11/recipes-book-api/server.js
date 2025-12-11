@@ -46,7 +46,7 @@ server.post('/api/recipes/save', (req, res) => {
 }, 4000);
 })
 
-server.post('/api/recipes/upload:id', (req, res) => {
+server.post('/api/recipes/upload/:id', (req, res) => {
   res.status(200).json(req.body);
 });
 
